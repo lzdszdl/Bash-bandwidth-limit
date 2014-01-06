@@ -3,4 +3,5 @@ Bash-bandwidth-limit
 
 Bash script for audible notifications when bandwidth exceeds  certain limit
 
-Run netbandwidth.sh first and then netlimit.sh
+usage example: netbandwith eth0 ; netlimit 10
+this would give a audible notification if bandwidth reaches 10 MB 
