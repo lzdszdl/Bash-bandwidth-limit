@@ -34,8 +34,7 @@ fi
 
 while true
 do
-	#echo "Entering if loop"
-	#read
+	
 	if [ ! -f "/sys/class/net/$1/statistics/rx_bytes" ]
 	then
 		echo "$1:Connection does not exist..."
