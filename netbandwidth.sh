@@ -22,11 +22,11 @@ done < usage.txt
 
 
 if [[ -z "$1" ]]; then
-	echo
+  echo ""
   echo usage: $0 network-interface
-  echo
+  echo ""
   echo e.g. $0 eth0
-  echo
+  echo ""
   exit
 fi
 
