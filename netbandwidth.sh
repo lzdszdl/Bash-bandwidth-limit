@@ -45,29 +45,31 @@ do
 		el=0;
 	else
 		el=1;	
-	  
 		R1=$(cat /sys/class/net/$1/statistics/rx_bytes)
-  	T1=$(cat /sys/class/net/$1/statistics/tx_bytes)
-    sleep 1
-    R2=$(cat /sys/class/net/$1/statistics/rx_bytes)
-    T2=$(cat /sys/class/net/$1/statistics/tx_bytes)
-    TBPS=$(($T2 - $T1))
-    RBPS=$(($R2 - $R1))
-    TKBPS=$(($TBPS / 1024))
-    RKBPS=$(($RBPS / 1024))
+	  	T1=$(cat /sys/class/net/$1/statistics/tx_bytes)
+		sleep 1
+    		R2=$(cat /sys/class/net/$1/statistics/rx_bytes)
+    		T2=$(cat /sys/class/net/$1/statistics/tx_bytes)
+    		TBPS=$(($T2 - $T1))
+    		RBPS=$(($R2 - $R1))
+    		TKBPS=$(($TBPS / 1024))
+    		RKBPS=$(($RBPS / 1024))
+    		
 	if [[ $TKBPS -ge 1 ]]
 	then
 		gtkbps=$(($gtkbps + $TKBPS))
 	fi
+	
 	if [[ $RKBPS -ge 1 ]]
 	then
 		grkbps=$(($grkbps + $RKBPS))
 	fi
+	
 	clear
-		echo "$gtkbps" > usage.txt
-		echo "$grkbps" >> usage.txt
+	echo "$gtkbps" > usage.txt
+	echo "$grkbps" >> usage.txt
+    	echo "tx $1: $TKBPS kb/s rx $1: $RKBPS kb/s"
+	echo "GTX total=$gtkbps kb ; GRX total=$grkbps kb"
 
-    echo "tx $1: $TKBPS kb/s rx $1: $RKBPS kb/s"
-		echo "GTX total=$gtkbps kb ; GRX total=$grkbps kb"
 	fi
 done
