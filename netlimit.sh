@@ -12,7 +12,6 @@ if [[ -z "$1" ]]; then
   exit
 fi
 
-
 while true 
 do
 	grkbps=$(cat usage.txt | awk 'NR%2==0 { print }');
