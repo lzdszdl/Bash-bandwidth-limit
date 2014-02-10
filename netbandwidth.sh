@@ -1,22 +1,22 @@
 #!/bin/bash
-el=0;
-gtkbps=0;
-grkbps=0;
-count=0;
-hello=1;
+el=0
+gtkbps=0
+grkbps=0
+count=0
+hello=1
 while read usgband
 do
 	if [[ $count -eq 0 ]]
 	then
-		gtkbps=$usgband;
+		gtkbps=$usgband
 		count=$(( $count + 1 ));
-		echo "gtkbps:$gtkbps:count:$count";
+		echo "gtkbps:$gtkbps:count:$count"
 	else
 		echo "entering else.."
 		read
 		
 		grkbps=$usgband;
-		echo "grkbps:$grkbps";
+		echo "grkbps:$grkbps"
 	fi
 done < usage.txt
 
@@ -39,12 +39,12 @@ do
 	then
 		echo "$1:Connection does not exist..."
 		echo "Tot TX:$gtkbps ; Tot RX:$grkbps "
-		echo $el;
-		sleep 1;
-		clear;
-		el=0;
+		echo $el
+		sleep 1
+		clear
+		el=0
 	else
-		el=1;	
+		el=1
 		R1=$(cat /sys/class/net/$1/statistics/rx_bytes)
 	  	T1=$(cat /sys/class/net/$1/statistics/tx_bytes)
 		sleep 1
@@ -69,7 +69,7 @@ do
 	echo "$gtkbps" > usage.txt
 	echo "$grkbps" >> usage.txt
     	echo "tx $1: $TKBPS kb/s rx $1: $RKBPS kb/s"
-	echo "GTX total=$gtkbps kb ; GRX total=$grkbps kb"
+	echo "GTX total=$gtkbps kb : GRX total=$grkbps kb"
 
 	fi
 done
